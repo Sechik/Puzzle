@@ -20,6 +20,7 @@ namespace Puzzle
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Image global_sender;
         public MainWindow()
         {
             InitializeComponent();
@@ -27,13 +28,14 @@ namespace Puzzle
 
         private void Image_Drop(object sender, DragEventArgs e)
         {
-            ((Image) sender).Source = e.Source as ImageSource;
+            ((Image)sender).Source = global_sender.Source;
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // sender – объект, на котором произошло данное событие.
             Image lbl = sender as Image;
+            global_sender = lbl;
             // Создаем источник.
             // Копируем содержимое метки Drop.
             // 1 параметр: Элемент управления, который будет источником.
